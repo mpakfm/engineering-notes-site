@@ -1,0 +1,11 @@
+---
+const { href, title, description, tags = [], pubDate, readingTime } = Astro.props;
+---
+<a class="card" href={href}>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <div class="meta">
+    {tags.map((tag: string) => <span class="tag">{tag}</span>)}
+  </div>
+  <div class="meta" style="margin-top:.5rem;">{pubDate} · {readingTime}</div>
+</a>

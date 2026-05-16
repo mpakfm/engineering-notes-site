@@ -1,0 +1,43 @@
+:root {
+  --bg: #f6f3ea;
+  --card: #fffdf8;
+  --text: #1f2a22;
+  --muted: #5e685f;
+  --accent: #4e7a5b;
+  --line: #d9dece;
+  --shadow: 0 10px 24px rgba(70, 80, 60, 0.08);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  background-image: linear-gradient(rgba(120,130,100,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(120,130,100,.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  line-height: 1.5;
+  font-size: 16px;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:1rem}
+.card{background:var(--card);border:1px solid #e5e8db;border-radius:16px;box-shadow:var(--shadow);padding:1rem}
+.section-title{font-size:1.35rem;margin:0 0 .8rem}
+.meta{color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{background:#e3ecdd;color:#32523d;padding:.15rem .55rem;border-radius:999px;font-size:.8rem}
+header.site{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.75rem 0;position:relative}
+.brand:focus-visible,.desktop a:focus-visible,.mobile-nav a:focus-visible,.mobile-menu summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+nav.desktop{display:none}
+.mobile-menu summary{list-style:none;cursor:pointer;border:1px solid var(--line);padding:.4rem .6rem;border-radius:10px;background:var(--card)}
+.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-nav{position:absolute;right:0;top:calc(100% + .4rem);min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);display:grid;gap:.2rem;padding:.45rem}
+.mobile-nav a{padding:.45rem .55rem;border-radius:8px}
+.mobile-nav a:hover{background:#edf3e8}
+.hero h1{font-size:clamp(2rem,9vw,3rem);line-height:1.1;margin:.2rem 0 .8rem}
+.hero p{max-width:62ch}
+.grid{display:grid;gap:1rem}
+.footer{padding:2rem 0;color:var(--muted);font-size:.95rem}
+@media (min-width: 900px){
+  .container{padding:1.25rem 1.5rem}
+  nav.desktop{display:flex;gap:1rem;color:var(--muted)}
+  .mobile-menu{display:none}
+}
