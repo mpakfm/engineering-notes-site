@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+const { title = 'Рабочие заметки инженера' } = Astro.props;
+---
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site">
+        <a href="/">
+          <strong>SF</strong><br /><small>Рабочие заметки инженера</small>
+        </a>
+        <nav class="desktop">
+          <a href="/notes/">Заметки</a>
+          <a href="/checklists/">Чек-листы</a>
+          <a href="/about/">Обо мне</a>
+        </nav>
+        <button class="burger" aria-label="Открыть меню">☰</button>
+      </header>
+      <slot />
+      <footer class="footer">Документируй то, что узнал сегодня, чтобы завтра не разбираться заново.</footer>
+    </div>
+  </body>
+</html>

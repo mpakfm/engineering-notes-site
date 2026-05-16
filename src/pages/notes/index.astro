@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryCard from '../../components/EntryCard.astro';
+const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort((a,b)=>b.data.pubDate.getTime()-a.data.pubDate.getTime());
+---
+<BaseLayout title="Заметки">
+  <h1>Заметки</h1>
+  <div class="grid">
+    {notes.map((note) => <EntryCard href={`/notes/${note.id}/`} title={note.data.title} description={note.data.description} tags={note.data.tags} pubDate={note.data.pubDate.toLocaleDateString('ru-RU')} readingTime={note.data.readingTime} />)}
+  </div>
+</BaseLayout>

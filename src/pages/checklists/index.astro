@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryCard from '../../components/EntryCard.astro';
+const items = await getCollection('checklists', ({ data }) => !data.draft);
+---
+<BaseLayout title="Чек-листы">
+  <h1>Чек-листы</h1>
+  <div class="grid">
+    {items.map((item) => <EntryCard href={`/checklists/${item.id}/`} title={item.data.title} description={item.data.description} tags={item.data.tags} pubDate={item.data.pubDate.toLocaleDateString('ru-RU')} readingTime={item.data.readingTime} />)}
+  </div>
+</BaseLayout>
