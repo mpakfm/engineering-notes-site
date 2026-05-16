@@ -1,0 +1,25 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">mpakfm logo mark</title>
+  <desc id="desc">Minimal mp slash monogram for mpakfm engineering notes</desc>
+
+  <rect x="3.5" y="3.5" width="33" height="33" rx="8" fill="#F8F5ED" stroke="#6F8F7B" stroke-width="1.5"></rect>
+
+  <!-- m -->
+  <path d="M9.5 25.5V16.5
+       C9.5 14.8 10.6 13.7 12.2 13.7
+       C13.9 13.7 15 14.9 15 16.7V25.5
+       M15 16.7
+       C15 14.9 16.2 13.7 17.8 13.7
+       C19.5 13.7 20.5 14.9 20.5 16.7V25.5" fill="none" stroke="#2F3A32" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+  <!-- p -->
+  <path d="M23.2 30V14
+       M23.2 15
+       H26.2
+       C29.1 15 30.9 16.9 30.9 19.7
+       C30.9 22.5 29.1 24.4 26.2 24.4
+       H23.2" fill="none" stroke="#2F3A32" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+  <!-- slash -->
+  <path d="M31.8 28.5L34.5 12" fill="none" stroke="#6F8F7B" stroke-width="2.1" stroke-linecap="round"></path>
+</svg>
