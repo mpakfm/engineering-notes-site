@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 const { title = 'mpakfm — рабочие заметки инженера' } = Astro.props;
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 <html lang="ru">
   <head>
@@ -20,9 +22,10 @@ const { title = 'mpakfm — рабочие заметки инженера' } = 
           </span>
         </a>
         <nav class="desktop" aria-label="Основная навигация">
-          <a href="/notes/">Заметки</a>
-          <a href="/checklists/">Чек-листы</a>
-          <a href="/about/">Обо мне</a>
+          <a href="/" class={isActive('/') ? 'active' : undefined}>Главная</a>
+          <a href="/notes/" class={isActive('/notes/') ? 'active' : undefined}>Заметки</a>
+          <a href="/checklists/" class={isActive('/checklists/') ? 'active' : undefined}>Чек-листы</a>
+          <a href="/about/" class={isActive('/about/') ? 'active' : undefined}>Обо мне</a>
         </nav>
 
         <details class="mobile-menu">
@@ -35,7 +38,18 @@ const { title = 'mpakfm — рабочие заметки инженера' } = 
         </details>
       </header>
       <slot />
-      <footer class="footer">Документируй то, что узнал сегодня, чтобы завтра не разбираться заново.</footer>
+      <footer class="footer">
+        <div>
+          <strong>mpakfm</strong>
+          <span>рабочие заметки инженера</span>
+        </div>
+        <p>Документируй то, что узнал сегодня, чтобы завтра не разбираться заново.</p>
+        <nav aria-label="Ссылки в подвале">
+          <a href="/notes/">Заметки</a>
+          <a href="/checklists/">Чек-листы</a>
+          <a href="/about/">Обо мне</a>
+        </nav>
+      </footer>
     </div>
   </body>
 </html>

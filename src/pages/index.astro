@@ -22,14 +22,39 @@ const iconThemes = ['green', 'blue', 'orange', 'violet'];
   <main class="home-layout">
     <div class="home-main">
       <section class="hero card">
+        <span class="notebook-binding" aria-hidden="true"></span>
         <div class="hero-copy">
-          <p class="eyebrow">инженерный блокнот</p>
+          <p class="eyebrow">публичный инженерный блокнот</p>
           <h1>Рабочие заметки инженера</h1>
           <p>Практические заметки о веб-разработке, Bitrix, интеграциях, релизах, оценке задач и процессах в команде.</p>
           <div class="hero-facts" aria-label="Принципы материалов">
-            <span>Из практики</span>
-            <span>Проверено</span>
-            <span>Понятно</span>
+            <span>
+              <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 5.5h6" />
+                <path d="M10 4h4l1 2h3v13H6V6h3z" />
+                <path d="M9 12h6" />
+                <path d="M9 16h4" />
+              </svg>
+              <strong>Из практики</strong>
+              <small>без теории ради теории</small>
+            </span>
+            <span>
+              <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 12a8 8 0 1 1-2.35-5.65" />
+                <path d="M20 5v5h-5" />
+                <path d="m9.5 12.5 1.8 1.8 3.7-4.1" />
+              </svg>
+              <strong>Проверено</strong>
+              <small>на реальных проектах</small>
+            </span>
+            <span>
+              <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 19 6v5c0 4.3-2.8 7.4-7 9-4.2-1.6-7-4.7-7-9V6z" />
+                <path d="m9.5 12 1.6 1.7 3.6-4" />
+              </svg>
+              <strong>Понятно</strong>
+              <small>без лишнего героизма</small>
+            </span>
           </div>
           <p class="hero-principle">Не идеально, но понятно и работает.</p>
         </div>
@@ -97,6 +122,7 @@ const iconThemes = ['green', 'blue', 'orange', 'violet'];
         <div>
           <h2 class="section-title">Коротко обо мне</h2>
           <p>Я Сергей Фомин, в интернете — mpakfm. Занимаюсь веб-разработкой, внутренними системами и интеграциями. Люблю, когда сложные процессы становятся понятными, задачи — предсказуемыми, а решения можно поддерживать без героизма.</p>
+          <a class="section-link about-link" href="/about/">Подробнее обо мне →</a>
         </div>
       </section>
 
