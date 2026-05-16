@@ -1,0 +1,94 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and deploy static site
+    runs-on: ubuntu-latest
+
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Validate deployment secrets
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+          : "${DEPLOY_HOST:?DEPLOY_HOST secret is required}"
+          : "${DEPLOY_USER:?DEPLOY_USER secret is required}"
+          : "${DEPLOY_PATH:?DEPLOY_PATH secret is required}"
+          : "${DEPLOY_KEY:?DEPLOY_KEY secret is required}"
+
+      - name: Configure SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${DEPLOY_PORT:-22}" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+      - name: Deploy
+        run: |
+          set -euo pipefail
+          SSH="ssh -i ~/.ssh/deploy_key -p ${DEPLOY_PORT:-22}"
+
+          $SSH "$DEPLOY_USER@$DEPLOY_HOST" "mkdir -p '$DEPLOY_PATH'"
+
+          rsync -az --delete \
+            --exclude='/.git' \
+            --exclude='/.git/**' \
+            --exclude='/maxchat/' \
+            --exclude='/maxchat/**' \
+            --exclude='/.github/' \
+            --exclude='/.github/**' \
+            --exclude='/src/' \
+            --exclude='/src/**' \
+            --exclude='/content/' \
+            --exclude='/content/**' \
+            --exclude='/docs/' \
+            --exclude='/docs/**' \
+            --exclude='/design/' \
+            --exclude='/design/**' \
+            --exclude='/node_modules/' \
+            --exclude='/node_modules/**' \
+            --exclude='/AGENTS.md' \
+            --exclude='/README.md' \
+            --exclude='/astro.config.mjs' \
+            --exclude='/package.json' \
+            --exclude='/package-lock.json' \
+            --exclude='/tsconfig.json' \
+            --exclude='/.gitignore' \
+            --exclude='/ChatGPT Image*.png' \
+            -e "$SSH" \
+            dist/ "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
