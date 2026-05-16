@@ -40,10 +40,28 @@ nav.desktop{display:none}
 .mobile-nav{position:absolute;right:0;top:calc(100% + .4rem);min-width:180px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);display:grid;gap:.2rem;padding:.45rem}
 .mobile-nav a{padding:.45rem .55rem;border-radius:8px}
 .mobile-nav a:hover{background:#edf3e8}
-.hero h1{font-size:clamp(2rem,9vw,3rem);line-height:1.1;margin:.2rem 0 .8rem}
+.hero{position:relative;display:grid;gap:1.4rem;overflow:hidden;padding:1.1rem;background-color:var(--card);background-image:linear-gradient(rgba(111,143,123,.11) 1px, transparent 1px),linear-gradient(90deg, rgba(111,143,123,.11) 1px, transparent 1px);background-size:22px 22px}
+.hero-copy{position:relative;z-index:1}
+.hero h1{font-family:Georgia, 'Times New Roman', serif;font-size:clamp(2.6rem,13vw,4rem);font-weight:700;line-height:.98;margin:.2rem 0 .8rem;letter-spacing:0}
 .hero p{max-width:62ch}
 .eyebrow{margin:0 0 .7rem;color:#315d3c;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
 .hero-principle{font-weight:700;color:#315d3c}
+.hero-facts{display:grid;gap:.55rem;margin:1rem 0;color:#355f42;font-size:.88rem;font-weight:700}
+.hero-facts span{display:inline-flex;align-items:center;gap:.35rem}
+.hero-facts span::before{content:"";width:.55rem;height:.55rem;border:2px solid var(--accent);border-radius:50%;background:#eef5ec}
+.hero-visual{position:relative;min-height:260px}
+.diagram{position:relative;height:180px;margin-left:auto;max-width:320px}
+.node{position:absolute;display:grid;place-items:center;min-width:62px;height:38px;padding:0 .55rem;border:1.5px solid #59625b;border-radius:5px;background:rgba(255,253,248,.88);font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:.9rem}
+.node.bitrix{left:8px;top:12px}
+.node.services{left:118px;top:12px}
+.node.onec{right:8px;top:12px}
+.node.api{left:118px;top:92px}
+.node.db{left:130px;top:142px;min-width:48px;height:32px;border-radius:50%}
+.diagram-arrow{position:absolute;color:#6f776f;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:1.55rem;line-height:1}
+.arrow-left{left:72px;top:58px}
+.arrow-right{right:72px;top:58px}
+.arrow-down{left:150px;top:124px}
+.sticky-note{position:absolute;right:.2rem;bottom:.2rem;width:min(260px,88%);margin:0;padding:1rem 1.1rem;background:#fff3b8;border:1px solid #efe0a3;box-shadow:0 12px 20px rgba(91,78,36,.18);transform:rotate(-4deg);font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:.8rem;line-height:1.45;white-space:pre-wrap}
 .grid{display:grid;gap:1rem}
 .home-layout{display:grid;gap:1rem;width:100%;max-width:100%;margin-top:.35rem}
 .home-main,.home-sidebar{display:grid;gap:1rem;min-width:0}
@@ -93,6 +111,18 @@ nav.desktop{display:none}
   body{overflow-x:hidden}
   .container{max-width:100vw}
   .hero.card,.home-section.card,.sidebar-card{width:calc(100vw - 2rem);max-width:100%}
+  .hero-visual{min-height:180px}
+  .diagram{height:142px;max-width:275px;margin:0}
+  .node{min-width:54px;height:32px;font-size:.8rem}
+  .node.bitrix{left:0;top:0}
+  .node.services{display:none}
+  .node.onec{right:0;top:0}
+  .node.api{left:105px;top:62px}
+  .node.db{left:112px;top:108px;min-width:42px;height:28px}
+  .arrow-left{left:54px;top:36px}
+  .arrow-right{right:54px;top:36px}
+  .arrow-down{left:126px;top:91px}
+  .sticky-note{right:.2rem;bottom:0;width:210px;font-size:.72rem}
   .start-grid,.entry-list,.compact-list{width:100%;max-width:100%;min-width:0}
   .section-heading{display:block}
   .section-heading p{white-space:normal;overflow-wrap:break-word}
@@ -112,6 +142,8 @@ nav.desktop{display:none}
   .mobile-menu{display:none}
   .home-layout{grid-template-columns:minmax(0,1fr) 320px;align-items:start}
   .home-sidebar{position:sticky;top:1rem}
+  .hero{grid-template-columns:minmax(0,1fr) 330px;min-height:290px;padding:1.25rem 1.35rem}
+  .hero-facts{grid-template-columns:repeat(3,max-content);gap:1rem}
   .start-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .start-card{grid-template-columns:1fr;align-content:start;min-height:190px}
   .start-card .item-icon{margin-bottom:.35rem}

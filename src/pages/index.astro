@@ -22,10 +22,34 @@ const iconThemes = ['green', 'blue', 'orange', 'violet'];
   <main class="home-layout">
     <div class="home-main">
       <section class="hero card">
-        <p class="eyebrow">инженерный блокнот</p>
-        <h1>Рабочие заметки инженера</h1>
-        <p>Практические заметки о веб-разработке, Bitrix, интеграциях, релизах, оценке задач и процессах в команде.</p>
-        <p class="hero-principle">Не идеально, но понятно и работает.</p>
+        <div class="hero-copy">
+          <p class="eyebrow">инженерный блокнот</p>
+          <h1>Рабочие заметки инженера</h1>
+          <p>Практические заметки о веб-разработке, Bitrix, интеграциях, релизах, оценке задач и процессах в команде.</p>
+          <div class="hero-facts" aria-label="Принципы материалов">
+            <span>Из практики</span>
+            <span>Проверено</span>
+            <span>Понятно</span>
+          </div>
+          <p class="hero-principle">Не идеально, но понятно и работает.</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="diagram">
+            <span class="node bitrix">Bitrix</span>
+            <span class="node services">Сервисы</span>
+            <span class="node onec">1C</span>
+            <span class="node api">API</span>
+            <span class="node db">DB</span>
+            <span class="diagram-arrow arrow-left">↘</span>
+            <span class="diagram-arrow arrow-right">↙</span>
+            <span class="diagram-arrow arrow-down">↓</span>
+          </div>
+          <pre class="sticky-note">def solve(problem):
+  understand(problem)
+  simplify()
+  make_it_work()
+  document()</pre>
+        </div>
       </section>
 
       <section class="home-section card">
