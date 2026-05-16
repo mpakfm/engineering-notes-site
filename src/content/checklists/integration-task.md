@@ -4,7 +4,7 @@ description: "Что уточнить до старта интеграции, ч
 pubDate: 2024-05-09
 tags: ["Интеграции", "API"]
 readingTime: "5 мин"
-draft: false
+draft: true
 ---
 
 - Кто владелец API и SLA.

@@ -8,13 +8,7 @@ const checklists = (await getCollection('checklists', ({ data }) => !data.draft)
 const topics = [...new Set(notes.flatMap((n) => n.data.tags))].slice(0, 10);
 
 const hrefFor = (collection: 'notes' | 'checklists', id: string) => `/${collection}/${slugFromContentId(id)}/`;
-const findEntry = (entries, id: string) => entries.find((entry) => entry.id === id);
-const startItems = [
-  findEntry(notes, 'bitrix-git-hard.md'),
-  findEntry(notes, 'small-fix.md'),
-  findEntry(checklists, 'integration-task.md'),
-  findEntry(checklists, 'release-bitrix.md'),
-].filter(Boolean);
+const startItems = notes.slice(0, 4);
 
 const iconThemes = ['green', 'blue', 'orange', 'violet'];
 ---
@@ -26,7 +20,7 @@ const iconThemes = ['green', 'blue', 'orange', 'violet'];
         <div class="hero-copy">
           <p class="eyebrow">публичный инженерный блокнот</p>
           <h1>Рабочие заметки инженера</h1>
-          <p>Практические заметки о веб-разработке, Bitrix, интеграциях, релизах, оценке задач и процессах в команде.</p>
+          <p>Пишу про веб-разработку, внутренние системы, интеграции, Bitrix, Git, релизы, процессы и жизнь с AI-агентами, которые всё чаще становятся частью обычной рабочей рутины.</p>
           <div class="hero-facts" aria-label="Принципы материалов">
             <span>
               <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -68,52 +62,56 @@ const iconThemes = ['green', 'blue', 'orange', 'violet'];
         </div>
       </section>
 
-      <section class="home-section card">
-        <div class="section-heading">
-          <div>
-            <h2 class="section-title">С чего начать</h2>
-            <p>Материалы, с которых удобно войти в контекст.</p>
+      {startItems.length > 0 && (
+        <section class="home-section card">
+          <div class="section-heading">
+            <div>
+              <h2 class="section-title">С чего начать</h2>
+              <p>Первая заметка, с которой начинается этот инженерный блокнот.</p>
+            </div>
           </div>
-        </div>
-        <div class="start-grid">
-          {startItems.map((entry, index) => {
-            const collection = entry.collection === 'checklists' ? 'checklists' : 'notes';
-            return (
-              <a class="start-card" href={hrefFor(collection, entry.id)}>
-                <span class={`item-icon ${iconThemes[index % iconThemes.length]}`}>{collection === 'checklists' ? '✓' : '//'}</span>
-                <span class="item-body">
-                  <span class="item-title">{entry.data.title}</span>
-                  <span class="item-description">{entry.data.description}</span>
-                  <span class="item-tags">{entry.data.tags.slice(0, 2).join(' · ')}</span>
-                </span>
-                <span class="item-arrow" aria-hidden="true">→</span>
-              </a>
-            );
-          })}
-        </div>
-      </section>
+          <div class="start-grid">
+            {startItems.map((entry, index) => {
+              const collection = entry.collection === 'checklists' ? 'checklists' : 'notes';
+              return (
+                <a class="start-card" href={hrefFor(collection, entry.id)}>
+                  <span class={`item-icon ${iconThemes[index % iconThemes.length]}`}>{collection === 'checklists' ? '✓' : '//'}</span>
+                  <span class="item-body">
+                    <span class="item-title">{entry.data.title}</span>
+                    <span class="item-description">{entry.data.description}</span>
+                    <span class="item-tags">{entry.data.tags.slice(0, 3).join(' · ')}</span>
+                  </span>
+                  <span class="item-arrow" aria-hidden="true">→</span>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
-      <section class="home-section card">
-        <div class="section-heading">
-          <h2 class="section-title">Свежие заметки</h2>
-        </div>
-        <div class="entry-list">
-          {notes.slice(0, 4).map((note, index) => (
-            <a class="entry-row" href={hrefFor('notes', note.id)}>
-              <span class={`item-icon ${iconThemes[index % iconThemes.length]}`}>//</span>
-              <span class="entry-content">
-                <span class="item-title">{note.data.title}</span>
-                <span class="item-description">{note.data.description}</span>
-              </span>
-              <span class="entry-meta">
-                <span class="compact-tags">{note.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}</span>
-                <span>{note.data.pubDate.toLocaleDateString('ru-RU')} · {note.data.readingTime}</span>
-              </span>
-            </a>
-          ))}
-        </div>
-        <a class="section-link" href="/notes/">Все заметки →</a>
-      </section>
+      {notes.length > 1 && (
+        <section class="home-section card">
+          <div class="section-heading">
+            <h2 class="section-title">Свежие заметки</h2>
+          </div>
+          <div class="entry-list">
+            {notes.slice(0, 4).map((note, index) => (
+              <a class="entry-row" href={hrefFor('notes', note.id)}>
+                <span class={`item-icon ${iconThemes[index % iconThemes.length]}`}>//</span>
+                <span class="entry-content">
+                  <span class="item-title">{note.data.title}</span>
+                  <span class="item-description">{note.data.description}</span>
+                </span>
+                <span class="entry-meta">
+                  <span class="compact-tags">{note.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}</span>
+                  <span>{note.data.pubDate.toLocaleDateString('ru-RU')} · {note.data.readingTime}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+          <a class="section-link" href="/notes/">Все заметки →</a>
+        </section>
+      )}
     </div>
 
     <aside class="home-sidebar" aria-label="Дополнительные материалы">
@@ -121,27 +119,33 @@ const iconThemes = ['green', 'blue', 'orange', 'violet'];
         <img src="/images/avatar-mpakfm.png" alt="Сергей Фомин" class="about-avatar" width="72" height="72" />
         <div>
           <h2 class="section-title">Коротко обо мне</h2>
-          <p>Я Сергей Фомин, в интернете — mpakfm. Занимаюсь веб-разработкой, внутренними системами и интеграциями. Люблю, когда сложные процессы становятся понятными, задачи — предсказуемыми, а решения можно поддерживать без героизма.</p>
+          <div class="about-copy">
+            <p>Я Сергей Фомин, в интернете — mpakfm.</p>
+            <p>Занимаюсь веб-разработкой, внутренними системами и интеграциями. В работе много Bitrix, Git, 1С, API, релизов, старых решений, новых требований и людей, которым надо, чтобы всё просто работало.</p>
+            <p>Отдельная часть моей текущей практики — AI-агенты и вайб-кодинг: не как волшебная кнопка, а как способ быстрее думать, черновить, проверять идеи и доводить маленькие задачи до результата.</p>
+          </div>
           <a class="section-link about-link" href="/about/">Подробнее обо мне →</a>
         </div>
       </section>
 
-      <section class="card sidebar-card checklists-summary">
-        <h2 class="section-title">Избранные чек-листы</h2>
-        <div class="compact-list">
-          {checklists.slice(0, 3).map((item) => (
-            <a class="compact-row" href={hrefFor('checklists', item.id)}>
-              <span class="item-icon green">✓</span>
-              <span>
-                <span class="item-title">{item.data.title}</span>
-                <span class="item-description">{item.data.readingTime}</span>
-              </span>
-              <span class="item-arrow" aria-hidden="true">→</span>
-            </a>
-          ))}
-        </div>
-        <a class="section-link" href="/checklists/">Все чек-листы →</a>
-      </section>
+      {checklists.length > 0 && (
+        <section class="card sidebar-card checklists-summary">
+          <h2 class="section-title">Избранные чек-листы</h2>
+          <div class="compact-list">
+            {checklists.slice(0, 3).map((item) => (
+              <a class="compact-row" href={hrefFor('checklists', item.id)}>
+                <span class="item-icon green">✓</span>
+                <span>
+                  <span class="item-title">{item.data.title}</span>
+                  <span class="item-description">{item.data.readingTime}</span>
+                </span>
+                <span class="item-arrow" aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
+          <a class="section-link" href="/checklists/">Все чек-листы →</a>
+        </section>
+      )}
 
       <section class="card sidebar-card topics-summary">
         <h2 class="section-title">Темы</h2>

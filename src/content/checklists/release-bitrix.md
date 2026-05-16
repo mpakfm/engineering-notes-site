@@ -4,7 +4,7 @@ description: "Короткий список проверок перед выкл
 pubDate: 2024-05-13
 tags: ["Bitrix", "Релизы"]
 readingTime: "6 мин"
-draft: false
+draft: true
 ---
 
 - Проверить миграции и скрипты развёртывания.

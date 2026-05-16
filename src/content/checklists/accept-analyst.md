@@ -4,7 +4,7 @@ description: "Минимальный чек-лист, чтобы команда 
 pubDate: 2024-05-08
 tags: ["Процессы", "Команда"]
 readingTime: "5 мин"
-draft: false
+draft: true
 ---
 
 - Есть ли критерии готовности.

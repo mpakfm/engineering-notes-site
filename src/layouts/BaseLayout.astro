@@ -24,7 +24,6 @@ const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.st
         <nav class="desktop" aria-label="Основная навигация">
           <a href="/" class={isActive('/') ? 'active' : undefined}>Главная</a>
           <a href="/notes/" class={isActive('/notes/') ? 'active' : undefined}>Заметки</a>
-          <a href="/checklists/" class={isActive('/checklists/') ? 'active' : undefined}>Чек-листы</a>
           <a href="/about/" class={isActive('/about/') ? 'active' : undefined}>Обо мне</a>
         </nav>
 
@@ -32,7 +31,6 @@ const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.st
           <summary aria-label="Открыть меню">☰</summary>
           <nav class="mobile-nav" aria-label="Мобильная навигация">
             <a href="/notes/">Заметки</a>
-            <a href="/checklists/">Чек-листы</a>
             <a href="/about/">Обо мне</a>
           </nav>
         </details>
@@ -46,7 +44,6 @@ const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.st
         <p>Документируй то, что узнал сегодня, чтобы завтра не разбираться заново.</p>
         <nav aria-label="Ссылки в подвале">
           <a href="/notes/">Заметки</a>
-          <a href="/checklists/">Чек-листы</a>
           <a href="/about/">Обо мне</a>
         </nav>
       </footer>
