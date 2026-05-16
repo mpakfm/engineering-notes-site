@@ -50,17 +50,7 @@ nav.desktop{display:none}
 .hero-facts span{display:inline-flex;align-items:center;gap:.35rem}
 .hero-facts span::before{content:"";width:.55rem;height:.55rem;border:2px solid var(--accent);border-radius:50%;background:#eef5ec}
 .hero-visual{position:relative;min-height:260px}
-.diagram{position:relative;height:180px;margin-left:auto;max-width:320px}
-.node{position:absolute;display:grid;place-items:center;min-width:62px;height:38px;padding:0 .55rem;border:1.5px solid #59625b;border-radius:5px;background:rgba(255,253,248,.88);font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:.9rem}
-.node.bitrix{left:8px;top:12px}
-.node.services{left:118px;top:12px}
-.node.onec{right:8px;top:12px}
-.node.api{left:118px;top:92px}
-.node.db{left:130px;top:142px;min-width:48px;height:32px;border-radius:50%}
-.diagram-arrow{position:absolute;color:#6f776f;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:1.55rem;line-height:1}
-.arrow-left{left:72px;top:58px}
-.arrow-right{right:72px;top:58px}
-.arrow-down{left:150px;top:124px}
+.hero-diagram{display:block;width:min(100%,320px);height:auto;margin-left:auto}
 .sticky-note{position:absolute;right:.2rem;bottom:.2rem;width:min(260px,88%);margin:0;padding:1rem 1.1rem;background:#fff3b8;border:1px solid #efe0a3;box-shadow:0 12px 20px rgba(91,78,36,.18);transform:rotate(-4deg);font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:.8rem;line-height:1.45;white-space:pre-wrap}
 .grid{display:grid;gap:1rem}
 .home-layout{display:grid;gap:1rem;width:100%;max-width:100%;margin-top:.35rem}
@@ -112,16 +102,7 @@ nav.desktop{display:none}
   .container{max-width:100vw}
   .hero.card,.home-section.card,.sidebar-card{width:calc(100vw - 2rem);max-width:100%}
   .hero-visual{min-height:180px}
-  .diagram{height:142px;max-width:275px;margin:0}
-  .node{min-width:54px;height:32px;font-size:.8rem}
-  .node.bitrix{left:0;top:0}
-  .node.services{display:none}
-  .node.onec{right:0;top:0}
-  .node.api{left:105px;top:62px}
-  .node.db{left:112px;top:108px;min-width:42px;height:28px}
-  .arrow-left{left:54px;top:36px}
-  .arrow-right{right:54px;top:36px}
-  .arrow-down{left:126px;top:91px}
+  .hero-diagram{width:min(275px,100%);margin-left:0}
   .sticky-note{right:.2rem;bottom:0;width:210px;font-size:.72rem}
   .start-grid,.entry-list,.compact-list{width:100%;max-width:100%;min-width:0}
   .section-heading{display:block}
