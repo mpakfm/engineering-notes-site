@@ -1,46 +1,154 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import EntryCard from '../components/EntryCard.astro';
 import { slugFromContentId } from '../utils/content';
 
 const notes = (await getCollection('notes', ({ data }) => !data.draft)).sort((a,b)=>b.data.pubDate.getTime()-a.data.pubDate.getTime());
-const checklists = (await getCollection('checklists', ({ data }) => !data.draft)).slice(0, 3);
+const checklists = (await getCollection('checklists', ({ data }) => !data.draft)).sort((a,b)=>b.data.pubDate.getTime()-a.data.pubDate.getTime());
 const topics = [...new Set(notes.flatMap((n) => n.data.tags))].slice(0, 10);
+
+const hrefFor = (collection: 'notes' | 'checklists', id: string) => `/${collection}/${slugFromContentId(id)}/`;
+const findEntry = (entries, id: string) => entries.find((entry) => entry.id === id);
+const startItems = [
+  findEntry(notes, 'bitrix-git-hard.md'),
+  findEntry(notes, 'small-fix.md'),
+  findEntry(checklists, 'integration-task.md'),
+  findEntry(checklists, 'release-bitrix.md'),
+].filter(Boolean);
+
+const iconThemes = ['green', 'blue', 'orange', 'violet'];
 ---
 <BaseLayout>
-  <section class="hero card">
-    <h1>Рабочие заметки инженера</h1>
-    <p>Практические заметки о веб-разработке, Bitrix, интеграциях, релизах, оценке задач и процессах в команде.</p>
-    <p><strong>Не идеально, но понятно и работает.</strong></p>
-  </section>
+  <main class="home-layout">
+    <div class="home-main">
+      <section class="hero card">
+        <span class="notebook-binding" aria-hidden="true"></span>
+        <div class="hero-copy">
+          <p class="eyebrow">публичный инженерный блокнот</p>
+          <h1>Рабочие заметки инженера</h1>
+          <p>Практические заметки о веб-разработке, Bitrix, интеграциях, релизах, оценке задач и процессах в команде.</p>
+          <div class="hero-facts" aria-label="Принципы материалов">
+            <span>
+              <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 5.5h6" />
+                <path d="M10 4h4l1 2h3v13H6V6h3z" />
+                <path d="M9 12h6" />
+                <path d="M9 16h4" />
+              </svg>
+              <strong>Из практики</strong>
+              <small>без теории ради теории</small>
+            </span>
+            <span>
+              <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 12a8 8 0 1 1-2.35-5.65" />
+                <path d="M20 5v5h-5" />
+                <path d="m9.5 12.5 1.8 1.8 3.7-4.1" />
+              </svg>
+              <strong>Проверено</strong>
+              <small>на реальных проектах</small>
+            </span>
+            <span>
+              <svg class="fact-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 19 6v5c0 4.3-2.8 7.4-7 9-4.2-1.6-7-4.7-7-9V6z" />
+                <path d="m9.5 12 1.6 1.7 3.6-4" />
+              </svg>
+              <strong>Понятно</strong>
+              <small>без лишнего героизма</small>
+            </span>
+          </div>
+          <p class="hero-principle">Не идеально, но понятно и работает.</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="/images/hero-architecture.svg" alt="" class="hero-diagram" width="320" height="190" />
+          <pre class="sticky-note">def solve(problem):
+  understand(problem)
+  simplify()
+  make_it_work()
+  document()</pre>
+        </div>
+      </section>
 
-  <main class="grid" style="margin-top:1rem;">
-    <section>
-      <h2 class="section-title">С чего начать</h2>
-      <div class="grid">
-        {notes.slice(0, 3).map((note) => <EntryCard href={`/notes/${slugFromContentId(note.id)}/`} title={note.data.title} description={note.data.description} tags={note.data.tags} pubDate={note.data.pubDate.toLocaleDateString('ru-RU')} readingTime={note.data.readingTime} />)}
-      </div>
-    </section>
-    <section>
-      <h2 class="section-title">Свежие заметки</h2>
-      <div class="grid">
-        {notes.slice(0, 4).map((note) => <EntryCard href={`/notes/${slugFromContentId(note.id)}/`} title={note.data.title} description={note.data.description} tags={note.data.tags} pubDate={note.data.pubDate.toLocaleDateString('ru-RU')} readingTime={note.data.readingTime} />)}
-      </div>
-    </section>
-    <section>
-      <h2 class="section-title">Избранные чек-листы</h2>
-      <div class="grid">
-        {checklists.map((item) => <EntryCard href={`/checklists/${slugFromContentId(item.id)}/`} title={item.data.title} description={item.data.description} tags={item.data.tags} pubDate={item.data.pubDate.toLocaleDateString('ru-RU')} readingTime={item.data.readingTime} />)}
-      </div>
-    </section>
-    <section class="card"><h2 class="section-title">Темы</h2><div class="meta">{topics.map((t) => <span class="tag">{t}</span>)}</div></section>
-    <section class="card about-card">
-      <img src="/images/avatar-mpakfm.png" alt="Сергей Фомин" class="about-avatar" width="72" height="72" />
-      <div>
-        <h2 class="section-title">Коротко обо мне</h2>
-        <p>Я Сергей Фомин, в интернете — mpakfm. Занимаюсь веб-разработкой, внутренними системами и интеграциями. Люблю, когда сложные процессы становятся понятными, задачи — предсказуемыми, а решения можно поддерживать без героизма.</p>
-      </div>
-    </section>
+      <section class="home-section card">
+        <div class="section-heading">
+          <div>
+            <h2 class="section-title">С чего начать</h2>
+            <p>Материалы, с которых удобно войти в контекст.</p>
+          </div>
+        </div>
+        <div class="start-grid">
+          {startItems.map((entry, index) => {
+            const collection = entry.collection === 'checklists' ? 'checklists' : 'notes';
+            return (
+              <a class="start-card" href={hrefFor(collection, entry.id)}>
+                <span class={`item-icon ${iconThemes[index % iconThemes.length]}`}>{collection === 'checklists' ? '✓' : '//'}</span>
+                <span class="item-body">
+                  <span class="item-title">{entry.data.title}</span>
+                  <span class="item-description">{entry.data.description}</span>
+                  <span class="item-tags">{entry.data.tags.slice(0, 2).join(' · ')}</span>
+                </span>
+                <span class="item-arrow" aria-hidden="true">→</span>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      <section class="home-section card">
+        <div class="section-heading">
+          <h2 class="section-title">Свежие заметки</h2>
+        </div>
+        <div class="entry-list">
+          {notes.slice(0, 4).map((note, index) => (
+            <a class="entry-row" href={hrefFor('notes', note.id)}>
+              <span class={`item-icon ${iconThemes[index % iconThemes.length]}`}>//</span>
+              <span class="entry-content">
+                <span class="item-title">{note.data.title}</span>
+                <span class="item-description">{note.data.description}</span>
+              </span>
+              <span class="entry-meta">
+                <span class="compact-tags">{note.data.tags.slice(0, 3).map((tag) => <span class="tag">{tag}</span>)}</span>
+                <span>{note.data.pubDate.toLocaleDateString('ru-RU')} · {note.data.readingTime}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+        <a class="section-link" href="/notes/">Все заметки →</a>
+      </section>
+    </div>
+
+    <aside class="home-sidebar" aria-label="Дополнительные материалы">
+      <section class="card about-card sidebar-card about-summary">
+        <img src="/images/avatar-mpakfm.png" alt="Сергей Фомин" class="about-avatar" width="72" height="72" />
+        <div>
+          <h2 class="section-title">Коротко обо мне</h2>
+          <p>Я Сергей Фомин, в интернете — mpakfm. Занимаюсь веб-разработкой, внутренними системами и интеграциями. Люблю, когда сложные процессы становятся понятными, задачи — предсказуемыми, а решения можно поддерживать без героизма.</p>
+          <a class="section-link about-link" href="/about/">Подробнее обо мне →</a>
+        </div>
+      </section>
+
+      <section class="card sidebar-card checklists-summary">
+        <h2 class="section-title">Избранные чек-листы</h2>
+        <div class="compact-list">
+          {checklists.slice(0, 3).map((item) => (
+            <a class="compact-row" href={hrefFor('checklists', item.id)}>
+              <span class="item-icon green">✓</span>
+              <span>
+                <span class="item-title">{item.data.title}</span>
+                <span class="item-description">{item.data.readingTime}</span>
+              </span>
+              <span class="item-arrow" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+        <a class="section-link" href="/checklists/">Все чек-листы →</a>
+      </section>
+
+      <section class="card sidebar-card topics-summary">
+        <h2 class="section-title">Темы</h2>
+        <div class="topic-list">
+          {topics.map((topic) => <span class="tag">{topic}</span>)}
+        </div>
+      </section>
+    </aside>
   </main>
 </BaseLayout>
