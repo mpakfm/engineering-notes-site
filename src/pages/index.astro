@@ -35,6 +35,12 @@ const topics = [...new Set(notes.flatMap((n) => n.data.tags))].slice(0, 10);
       </div>
     </section>
     <section class="card"><h2 class="section-title">Темы</h2><div class="meta">{topics.map((t) => <span class="tag">{t}</span>)}</div></section>
-    <section class="card"><h2 class="section-title">Коротко обо мне</h2><p>Я Сергей Фомин. Веду публичный инженерный блокнот о Bitrix, интеграциях, релизах и рабочих компромиссах.</p></section>
+    <section class="card about-card">
+      <img src="/images/avatar-mpakfm.png" alt="Сергей Фомин" class="about-avatar" width="72" height="72" />
+      <div>
+        <h2 class="section-title">Коротко обо мне</h2>
+        <p>Я Сергей Фомин, в интернете — mpakfm. Занимаюсь веб-разработкой, внутренними системами и интеграциями. Люблю, когда сложные процессы становятся понятными, задачи — предсказуемыми, а решения можно поддерживать без героизма.</p>
+      </div>
+    </section>
   </main>
 </BaseLayout>
