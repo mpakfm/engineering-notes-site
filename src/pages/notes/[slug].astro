@@ -11,9 +11,9 @@ const { note } = Astro.props;
 const { Content } = await render(note);
 ---
 <BaseLayout title={note.data.title}>
-  <article class="card">
+  <article class="card content-card">
     <h1>{note.data.title}</h1>
-    <p>{note.data.description}</p>
+    <p class="content-description">{note.data.description}</p>
     <div class="meta">{note.data.tags.map((t: string)=><span class="tag">{t}</span>)} · {note.data.pubDate.toLocaleDateString('ru-RU')} · {note.data.readingTime}</div>
     <Content />
   </article>

@@ -55,6 +55,14 @@ nav.desktop{display:none}
 .hero-diagram{display:block;width:min(100%,320px);height:auto;margin-left:auto}
 .sticky-note{position:absolute;right:.2rem;bottom:.2rem;width:min(260px,88%);margin:0;padding:1rem 1.1rem;background:#fff3b8;border:1px solid #efe0a3;box-shadow:0 12px 20px rgba(91,78,36,.18);transform:rotate(-4deg);font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;font-size:.8rem;line-height:1.45;white-space:pre-wrap}
 .grid{display:grid;gap:1rem}
+.content-card{max-width:900px;margin:0 auto;padding:1.25rem}
+.content-card h1{font-size:clamp(2rem,5vw,3rem);line-height:1.08;margin:.35rem 0 1rem}
+.content-description{color:var(--muted);font-size:1.08rem}
+.content-card .meta{margin:1rem 0 1.4rem}
+.content-card :where(p,li){font-size:1.05rem;line-height:1.72}
+.content-card h2{margin:2rem 0 .8rem;font-size:1.55rem;line-height:1.2}
+.content-card ul{padding-left:1.3rem}
+.content-card li+li{margin-top:.35rem}
 .home-layout{display:grid;gap:1rem;width:100%;max-width:100%;margin-top:.35rem}
 .home-main,.home-sidebar{display:grid;gap:1rem;min-width:0}
 .home-section{display:grid;gap:1rem;width:100%;max-width:100%}
@@ -88,6 +96,7 @@ nav.desktop{display:none}
 .about-card{display:flex;align-items:flex-start;gap:1rem}
 .about-avatar{width:72px;height:72px;flex:0 0 auto;border-radius:50%;object-fit:cover;border:1px solid var(--line);background:#ebe7dc}
 .about-card p{margin:0;max-width:68ch}
+.about-copy{display:grid;gap:.85rem}
 .about-link{margin-top:1rem}
 .about-card-large{align-items:center}
 .about-card-large .about-avatar{width:96px;height:96px}
@@ -145,7 +154,7 @@ nav.desktop{display:none}
   .hero-visual{align-self:center;min-height:305px}
   .hero-diagram{width:min(100%,245px)}
   .sticky-note{right:0;bottom:.2rem;width:250px;font-size:.74rem}
-  .start-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .start-grid{grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr))}
   .start-card{grid-template-columns:1fr;align-content:start;min-height:190px}
   .start-card .item-icon{margin-bottom:.35rem}
   .start-card .item-arrow{display:none}
@@ -159,5 +168,4 @@ nav.desktop{display:none}
 }
 @media (min-width: 1120px){
   .home-layout{grid-template-columns:minmax(0,1fr) 330px}
-  .start-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
