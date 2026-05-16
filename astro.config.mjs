@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://example.com',
+  // site is intentionally omitted for MVP until production domain is defined
 });

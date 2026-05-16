@@ -11,15 +11,23 @@ const { title = 'Рабочие заметки инженера' } = Astro.props
   <body>
     <div class="container">
       <header class="site">
-        <a href="/">
+        <a href="/" class="brand">
           <strong>SF</strong><br /><small>Рабочие заметки инженера</small>
         </a>
-        <nav class="desktop">
+        <nav class="desktop" aria-label="Основная навигация">
           <a href="/notes/">Заметки</a>
           <a href="/checklists/">Чек-листы</a>
           <a href="/about/">Обо мне</a>
         </nav>
-        <button class="burger" aria-label="Открыть меню">☰</button>
+
+        <details class="mobile-menu">
+          <summary aria-label="Открыть меню">☰</summary>
+          <nav class="mobile-nav" aria-label="Мобильная навигация">
+            <a href="/notes/">Заметки</a>
+            <a href="/checklists/">Чек-листы</a>
+            <a href="/about/">Обо мне</a>
+          </nav>
+        </details>
       </header>
       <slot />
       <footer class="footer">Документируй то, что узнал сегодня, чтобы завтра не разбираться заново.</footer>
