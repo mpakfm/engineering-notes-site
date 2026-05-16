@@ -4,9 +4,15 @@
 
 ## Файлы
 
-- `homepage-mockup-v1.svg` — векторный референс главной страницы, восстановленный по последнему утвержденному макету.
+- `descktop-reference.png` — основной desktop-референс главной страницы.
+- `mobile-reference.png` — основной mobile-референс главной страницы.
+- `brand-reference-header.png` — референс логотипа, палитры, desktop/mobile header и favicon preview.
+- `web-reference-logo.svg` — рабочая SVG-логомарка `mp/`.
+- `homepage-mockup-v1.svg` — ранний векторный референс главной страницы.
 - `homepage-mockup-v1.prompt.md` — текстовый бриф/промпт, по которому можно повторно сгенерировать или доработать макет.
 
 ## Важное замечание
 
-GitHub-коннектор в чате пишет текстовые UTF-8 файлы. Поэтому исходный бинарный PNG из генерации не загружен напрямую как `.png`. Вместо него добавлен SVG-референс и текстовый дизайн-бриф. Для верстки их достаточно: SVG можно открыть прямо в браузере или GitHub, а подробные требования лежат в `docs/design-spec.md`.
+Актуальные PNG-референсы уже лежат в этой директории. Для верстки главной использовать `descktop-reference.png` и `mobile-reference.png`, для бренда и шапки — `brand-reference-header.png` и `web-reference-logo.svg`.
+
+`homepage-mockup-v1.svg` и `homepage-mockup-v1.prompt.md` оставить как вспомогательные материалы ранней итерации. Подробные требования лежат в `docs/design-spec.md`.
