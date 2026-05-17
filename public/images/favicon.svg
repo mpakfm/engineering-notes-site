@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">mpakfm favicon</title>
+  <desc id="desc">A small muted green connection diagram shaped like the letter M</desc>
+  <rect width="32" height="32" rx="7" fill="#F8F5ED"/>
+  <path d="M7.5 23.5V8.5L16 17L24.5 8.5V23.5" fill="none" stroke="#6F8F7B" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="7.5" cy="23.5" r="2.75" fill="#F8F5ED" stroke="#315D3C" stroke-width="1.7"/>
+  <circle cx="7.5" cy="8.5" r="2.75" fill="#F8F5ED" stroke="#315D3C" stroke-width="1.7"/>
+  <circle cx="16" cy="17" r="2.75" fill="#F8F5ED" stroke="#315D3C" stroke-width="1.7"/>
+  <circle cx="24.5" cy="8.5" r="2.75" fill="#F8F5ED" stroke="#315D3C" stroke-width="1.7"/>
+  <circle cx="24.5" cy="23.5" r="2.75" fill="#F8F5ED" stroke="#315D3C" stroke-width="1.7"/>
+</svg>

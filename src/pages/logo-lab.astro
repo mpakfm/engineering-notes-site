@@ -1,0 +1,273 @@
+---
+import '../styles/global.css';
+
+const variants = [
+  {
+    label: 'A',
+    title: 'Текущий sans',
+    className: 'wordmark-sans',
+    note: 'Нейтральный и привычный. Самый спокойный, но менее личный.',
+  },
+  {
+    label: 'B',
+    title: 'Serif wordmark',
+    className: 'wordmark-serif-bold',
+    note: 'Более выразительный вариант, хорошо рифмуется с hero-заголовком.',
+  },
+  {
+    label: 'C',
+    title: 'Serif wordmark lighter',
+    className: 'wordmark-serif-light',
+    note: 'Выразительный, но спокойнее по весу. Ближе к выбранному направлению.',
+  },
+];
+---
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Logo Lab — mpakfm</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <main class="logo-lab">
+      <header class="logo-lab-intro">
+        <a class="logo-lab-back" href="/">← На сайт</a>
+        <div>
+          <p class="eyebrow">logo lab</p>
+          <h1>Wordmark-варианты для шапки</h1>
+          <p>Сравнение text-only branding без иконки в desktop и mobile-контексте. Иконка остается только отдельным favicon.</p>
+        </div>
+      </header>
+
+      <div class="wordmark-variants">
+        {variants.map((variant) => (
+          <section class="wordmark-variant">
+            <aside class="variant-note">
+              <span>{variant.label}</span>
+              <h2>{variant.title}</h2>
+              <p>{variant.note}</p>
+            </aside>
+
+            <div class="variant-previews">
+              <div class="preview-label">Desktop · 1200px+</div>
+              <div class="header-preview desktop-preview">
+                <div class="preview-brand">
+                  <span class={`preview-brand-name ${variant.className}`}>mpakfm</span>
+                  <span class="preview-brand-subtitle">рабочие заметки инженера</span>
+                </div>
+                <nav class="preview-nav" aria-label="Навигация предпросмотра">
+                  <a class="active" href="/">Главная</a>
+                  <a href="/notes/">Заметки</a>
+                  <a href="/about/">Обо мне</a>
+                </nav>
+              </div>
+
+              <div class="preview-label mobile-label">Mobile · 360px</div>
+              <div class="mobile-preview">
+                <div class="preview-brand">
+                  <span class={`preview-brand-name ${variant.className}`}>mpakfm</span>
+                  <span class="preview-brand-subtitle">рабочие заметки инженера</span>
+                </div>
+                <span class="preview-burger" aria-hidden="true">☰</span>
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  .logo-lab {
+    width: min(1180px, calc(100vw - 2rem));
+    margin: 0 auto;
+    padding: 2rem 0 3rem;
+  }
+
+  .logo-lab-intro {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .logo-lab-back {
+    justify-self: start;
+    color: #315d3c;
+    font-weight: 700;
+  }
+
+  .logo-lab-intro h1 {
+    margin: 0 0 .65rem;
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1;
+  }
+
+  .logo-lab-intro p:not(.eyebrow) {
+    max-width: 68ch;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .wordmark-variants {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .wordmark-variant {
+    display: grid;
+    grid-template-columns: minmax(0, 230px) minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .variant-note {
+    padding: 1rem;
+    border: 1px solid #e5e8db;
+    border-radius: 14px;
+    background: rgba(255, 253, 248, .72);
+  }
+
+  .variant-note span {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    margin-bottom: .75rem;
+    border-radius: 999px;
+    background: #446f52;
+    color: #fffdf8;
+    font-weight: 700;
+  }
+
+  .variant-note h2 {
+    margin: 0 0 .4rem;
+    font-size: 1.1rem;
+  }
+
+  .variant-note p {
+    margin: 0;
+    color: var(--muted);
+    font-size: .95rem;
+  }
+
+  .variant-previews {
+    display: grid;
+    gap: .45rem;
+  }
+
+  .preview-label {
+    color: var(--muted);
+    font-size: .85rem;
+  }
+
+  .mobile-label {
+    margin-top: .35rem;
+  }
+
+  .header-preview,
+  .mobile-preview {
+    border: 1px solid #e0e3d6;
+    border-radius: 12px;
+    background: rgba(255, 253, 248, .72);
+    box-shadow: var(--shadow);
+  }
+
+  .header-preview {
+    min-height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.35rem;
+  }
+
+  .mobile-preview {
+    width: min(360px, 100%);
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .95rem 1rem;
+  }
+
+  .preview-brand {
+    display: grid;
+    gap: .2rem;
+    line-height: 1.08;
+  }
+
+  .preview-brand-name {
+    color: var(--text);
+    font-size: 1.35rem;
+  }
+
+  .wordmark-sans {
+    font-family: var(--font-sans);
+    font-weight: 650;
+    letter-spacing: 0;
+  }
+
+  .wordmark-serif-bold {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -.02em;
+  }
+
+  .wordmark-serif-light {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+
+  .preview-brand-subtitle {
+    color: #315d3c;
+    font-size: .78rem;
+    white-space: nowrap;
+  }
+
+  .preview-nav {
+    display: flex;
+    gap: 1.35rem;
+    color: var(--muted);
+  }
+
+  .preview-nav a {
+    padding: .45rem .15rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .preview-nav a.active {
+    color: #315d3c;
+    border-bottom-color: var(--accent);
+  }
+
+  .preview-burger {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 760px) {
+    .wordmark-variant {
+      grid-template-columns: 1fr;
+    }
+
+    .header-preview {
+      align-items: flex-start;
+    }
+
+    .preview-nav {
+      display: none;
+    }
+  }
+</style>
