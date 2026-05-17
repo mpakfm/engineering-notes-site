@@ -6,3 +6,13 @@ build/
 .env
 .env.*
 !.env.example
+
+# Static files deployed into the production web-root.
+# The server web-root is also a git worktree, so rsync'ed Astro output
+# must stay untracked there.
+/_astro/
+/about/
+/checklists/
+/images/
+/notes/
+/index.html
